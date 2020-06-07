@@ -4,23 +4,56 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.1/howler.js"></script>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+
     <title>Relax</title>
   </head>
 
   <body>
-    <h1>Regulate your breathing</h1>
+    <h1></h1>
+    <div class="buttons-container">
+      <button
+        id="stressed"
+        class="waves-effect waves-light btn play_arrow teal darken-4"
+        onclick="playAudio(id)"
+      >
+        I am stressed
+        <i id="stressed-icon" class="material-icons"></i>
+      </button>
 
-    <div class="container">
+      <button
+        id="anxious"
+        class="waves-effect waves-light btn teal darken-4"
+        onclick="playAudio(id)"
+      >
+        I am anxious
+        <i id="anxious-icon" class="material-icons"></i>
+      </button>
+    </div>
+
+    <div class="circles-container">
+      <div class="gradient-circle"></div>
       <div class="circle">
         <p id="text"></p>
 
         <div class="pointer-container">
           <div class="pointer"></div>
         </div>
-
-        <div class="gradient-circle"></div>
       </div>
     </div>
+
     <script src="script.js"></script>
+    <video autoplay muted loop id="myVideo">
+      <source src="./img/bg.mp4" type="video/mp4" />
+      Your browser does not support HTML5 video.
+    </video>
   </body>
 </html>
