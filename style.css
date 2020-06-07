@@ -1,0 +1,172 @@
+:root {
+  --total-time-in-seconds: ;
+  --breath-in-time-in-seconds: ;
+  --hold-time-in-seconds: ;
+  --breath-out-time-in-seconds: ;
+
+  --breath-in-ratio: ;
+  --hold-ratio: ;
+  --breath-out-ratio: ;
+
+  --first-interval: ;
+  --second-interval: ;
+  --third-interval: 100%;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+#text {
+  color: antiquewhite;
+}
+
+h3 {
+  color: rgb(184, 184, 184);
+}
+
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+}
+
+body {
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  background-color: rgba(255, 255, 255, 0);
+  padding: 0;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.circles-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  height: 300px;
+  width: 300px;
+  margin-top: 20px;
+  position: relative;
+  transform: scale(1);
+}
+
+.circle {
+  font-size: 2rem;
+  font-weight: 600;
+  background-color: #010f1c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+  width: 90%;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 2;
+}
+
+.gradient-circle {
+  background: conic-gradient(
+    #62d3bc 0%,
+    #2a665a var(--first-interval),
+    rgb(58, 58, 58) var(--first-interval),
+    rgb(15, 15, 15) var(--second-interval),
+    #295a50 var(--second-interval),
+    #163b35 var(--third-interval)
+  );
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.pointer {
+  background-color: #fff;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  display: block;
+}
+
+.pointer-container {
+  position: fixed;
+  top: -40px;
+  left: 140px;
+  width: 20px;
+  height: 190px;
+  animation: rotate var(--total-time-in-seconds) linear forwards infinite;
+  transform-origin: bottom center;
+}
+
+.buttons-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+#stressed,
+#anxious {
+  background-color: #186670;
+  width: 240px;
+  height: 50px;
+  margin: 20px;
+  padding: 0;
+  /* line-height: 50px; */
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* ! KeyFrames here */
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+.circles-container.grow {
+  animation: grow var(--breath-in-time-in-seconds) ease-in-out forwards;
+}
+
+@keyframes grow {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.2);
+  }
+}
+
+.circles-container.shrink {
+  animation: shrink var(--breath-out-time-in-seconds) ease-in-out forwards;
+}
+
+@keyframes shrink {
+  from {
+    transform: scale(1.2);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
