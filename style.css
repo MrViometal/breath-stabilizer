@@ -11,6 +11,9 @@
   --first-interval: ;
   --second-interval: ;
   --third-interval: 100%;
+
+  --scale-start: 1;
+  --scale-end: 2;
 }
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
@@ -52,20 +55,28 @@ body {
   background-size: cover;
 }
 
+.app-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 .circles-container {
   display: flex;
   align-items: center;
   justify-content: center;
   margin: auto;
-  height: 300px;
-  width: 300px;
-  margin-top: 20px;
+  height: 200px;
+  width: 200px;
+
   position: relative;
   transform: scale(1);
 }
 
 .circle {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 600;
   background-color: #010f1c;
   display: flex;
@@ -104,10 +115,10 @@ body {
 
 .pointer-container {
   position: fixed;
-  top: -40px;
-  left: 140px;
+  top: -30px;
+  left: 90px;
   width: 20px;
-  height: 190px;
+  height: 130px;
   animation: rotate var(--total-time-in-seconds) linear forwards infinite;
   transform-origin: bottom center;
 }
@@ -149,11 +160,11 @@ body {
 
 @keyframes grow {
   from {
-    transform: scale(1);
+    transform: scale(var(--scale-start));
   }
 
   to {
-    transform: scale(1.2);
+    transform: scale(var(--scale-end));
   }
 }
 
@@ -163,10 +174,10 @@ body {
 
 @keyframes shrink {
   from {
-    transform: scale(1.2);
+    transform: scale(var(--scale-end));
   }
 
   to {
-    transform: scale(1);
+    transform: scale(var(--scale-start));
   }
 }
