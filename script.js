@@ -15,64 +15,60 @@ const holdTime = (totalTime / ratio.total) * ratio.hold;
 const breathOutTime = (totalTime / ratio.total) * ratio.out;
 
 var stressAudio = new Audio();
-stressAudio.src = 'stress.mp3';
+stressAudio.src = './audio/stress.mp3';
+stressAudio.volume = 0.3;
+
 var anxietyAudio = new Audio();
-anxietyAudio.src = 'anxiety.mp3';
+anxietyAudio.src = './audio/anxiety.mp3';
+anxietyAudio.volume = 0.08;
+
+var guitarAudio = new Audio();
+guitarAudio.src = './audio/guitar-serenity.mp3';
+guitarAudio.volume = 0.05;
 
 breathAnimation();
 
 setCSSVariables();
 
+function playGuitarAudio() {
+  guitarAudio.play();
+  guitarAudio.loop = true;
+}
+
 function playAudio(id) {
   if (id === 'anxious') {
     if (anxietyAudio.paused === false) {
       //anxiety audio is playing, should pause
+      anxietyAudio.pause();
+      guitarAudio.play();
 
       document.getElementById('anxious-icon').innerHTML = 'pause';
-      anxietyAudio.pause();
     } else {
       //anxiety audio is either paused or not paying, should play
+      stressAudio.load();
+      guitarAudio.pause();
+      anxietyAudio.play();
 
       document.getElementById('stressed-icon').innerHTML = '';
-      stressAudio.load();
-
       document.getElementById('anxious-icon').innerHTML = 'play_arrow';
-      anxietyAudio.play();
     }
   } else if (id === 'stressed') {
     if (stressAudio.paused === false) {
       //stress audio is playing, should pause
+      stressAudio.pause();
+      guitarAudio.play();
 
       document.getElementById('stressed-icon').innerHTML = 'pause';
-      stressAudio.pause();
     } else {
       //stress audio is either paused or not paying, should play
-      document.getElementById('anxious-icon').innerHTML = '';
       anxietyAudio.load();
-
-      document.getElementById('stressed-icon').innerHTML = 'play_arrow';
+      guitarAudio.pause();
       stressAudio.play();
+
+      document.getElementById('anxious-icon').innerHTML = '';
+      document.getElementById('stressed-icon').innerHTML = 'play_arrow';
     }
   }
-}
-
-function pauseAudio() {
-  anxietyAudio.pause();
-  stressAudio.pause();
-}
-
-function breathAnimation() {
-  text.innerHTML = 'Breath In';
-  container.className = 'circles-container grow';
-
-  setTimeout(() => {
-    text.innerText = 'Hold...';
-
-    setTimeout(() => {
-      text.innerText = 'Breath Out';
-      container.className = 'circles-container shrink';
-    }, holdTime);
-  }, breathInTime);
 }
 
 function setCSSVariables() {
@@ -99,4 +95,20 @@ function cssVar(name, value) {
   return getComputedStyle(document.documentElement).getPropertyValue(name);
 }
 
+function breathAnimation() {
+  text.innerHTML = 'Breath In';
+  container.className = 'circles-container grow';
+
+  setTimeout(() => {
+    text.innerText = 'Hold...';
+
+    setTimeout(() => {
+      text.innerText = 'Breath Out';
+      container.className = 'circles-container shrink';
+    }, holdTime);
+  }, breathInTime);
+}
+
 setInterval(breathAnimation, totalTime);
+
+window.onload = playGuitarAudio();
