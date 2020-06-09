@@ -155,7 +155,7 @@ body {
   }
 }
 .circles-container.grow {
-  animation: grow var(--breath-in-time-in-seconds) ease-in-out forwards;
+  animation: grow var(--breath-in-time-in-seconds) ease-in forwards;
 }
 
 @keyframes grow {
