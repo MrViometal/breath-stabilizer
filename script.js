@@ -16,11 +16,11 @@ const breathOutTime = (totalTime / ratio.total) * ratio.out;
 
 var stressAudio = new Audio();
 stressAudio.src = './audio/stress.mp3';
-stressAudio.volume = 0.3;
+stressAudio.volume = 0.5;
 
 var anxietyAudio = new Audio();
 anxietyAudio.src = './audio/anxiety.mp3';
-anxietyAudio.volume = 0.08;
+anxietyAudio.volume = 0.2;
 
 var guitarAudio = new Audio();
 guitarAudio.src = './audio/guitar-serenity.mp3';
